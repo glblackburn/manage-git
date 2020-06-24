@@ -24,3 +24,5 @@ branch=$(git symbolic-ref --short -q HEAD)
 if [ "$branch" != "$dst_branch" ]; then
   git checkout $dst_branch
 fi
+
+git merge $src_branch --no-ff --no-edit
