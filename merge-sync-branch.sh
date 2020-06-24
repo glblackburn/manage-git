@@ -20,9 +20,13 @@ if ! git diff-index --quiet HEAD --; then
 fi
 
 # Get current branch and checkout if needed
-branch=$(git symbolic-ref --short -q HEAD)
-if [ "$branch" != "$dst_branch" ]; then
+ori_branch=$(git symbolic-ref --short -q HEAD)
+if [ "ori_$branch" != "$dst_branch" ]; then
   git checkout $dst_branch
 fi
 
 git merge $src_branch --no-ff --no-edit
+git push
+
+#checkout the original branch
+git checkout ${ori_branch}
