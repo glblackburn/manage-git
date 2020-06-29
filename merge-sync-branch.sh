@@ -29,14 +29,17 @@ cat<<EOF
 branch_check=[${branch_check}]
 EOF
 
-exit
-
-# Checkout destination branch if needed
-if [ "ori_$branch" != "$dst_branch" ]; then
-  git checkout $dst_branch
+if [ "${branch_check}" != "${dst_branch}" ]; then
+    echo "Stop: Destination branch '${dst_branch}' does not exists."
+    exit
 fi
 
-git merge $src_branch --no-ff --no-edit
+# Checkout destination branch if needed
+if [ "${ori_branch}" != "${dst_branch}" ]; then
+  git checkout ${dst_branch}
+fi
+
+git merge ${src_branch} --no-ff --no-edit
 git push
 
 #checkout the original branch
