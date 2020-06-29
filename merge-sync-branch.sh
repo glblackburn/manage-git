@@ -24,7 +24,8 @@ ori_branch=$(git symbolic-ref --short -q HEAD)
 
 
 # Check that destination branch exists.  Do not create a new branch
-branch_check=$(git branch -l ${dst_branch} | sed "s/^[* ] //")
+branch_check=$(git branch -lr origin/${dst_branch} | sed "s/^  origin\///")
+branch_check=$(git branch -lr origin/${dst_branch})
 cat<<EOF
 branch_check=[${branch_check}]
 EOF
@@ -33,6 +34,8 @@ if [ "${branch_check}" != "${dst_branch}" ]; then
     echo "Stop: Destination branch '${dst_branch}' does not exists."
     exit
 fi
+
+exit
 
 # Checkout destination branch if needed
 if [ "${ori_branch}" != "${dst_branch}" ]; then
