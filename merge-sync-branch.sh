@@ -40,7 +40,7 @@ if [ "${ori_branch}" != "${dst_branch}" ]; then
 fi
 
 git merge ${src_branch} --no-ff --no-edit
-git push
+git push --set-upstream origin ${dst_branch}
 
 #checkout the original branch
 git checkout ${ori_branch}
