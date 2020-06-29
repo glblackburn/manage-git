@@ -19,8 +19,19 @@ if ! git diff-index --quiet HEAD --; then
   exit
 fi
 
-# Get current branch and checkout if needed
+# Get current branch
 ori_branch=$(git symbolic-ref --short -q HEAD)
+
+
+# Check that destination branch exists.  Do not create a new branch
+branch_check=$(git branch -l ${dst_branch} | sed "s/^\*? //")
+cat<<EOF
+branch_check=[${branch_check}]
+EOF
+
+return
+
+# Checkout destination branch if needed
 if [ "ori_$branch" != "$dst_branch" ]; then
   git checkout $dst_branch
 fi
