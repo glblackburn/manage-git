@@ -29,7 +29,7 @@ cat<<EOF
 branch_check=[${branch_check}]
 EOF
 
-return
+exit
 
 # Checkout destination branch if needed
 if [ "ori_$branch" != "$dst_branch" ]; then
