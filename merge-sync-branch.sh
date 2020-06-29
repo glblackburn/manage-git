@@ -35,8 +35,6 @@ if [ "${branch_check}" != "${dst_branch}" ]; then
     exit
 fi
 
-exit
-
 # Checkout destination branch if needed
 if [ "${ori_branch}" != "${dst_branch}" ]; then
   git checkout ${dst_branch}
