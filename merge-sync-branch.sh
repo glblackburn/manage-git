@@ -22,7 +22,6 @@ fi
 # Get current branch
 ori_branch=$(git symbolic-ref --short -q HEAD)
 
-
 # Check that destination branch exists.  Do not create a new branch
 branch_check=$(git branch -lr origin/${dst_branch} | sed "s/^  origin\///")
 cat<<EOF
